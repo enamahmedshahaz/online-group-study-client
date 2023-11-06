@@ -1,12 +1,18 @@
 //import Swal from 'sweetalert2';
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from 'sweetalert2'
+
 
 
 const AssignmentCreate = () => {
 
-    const [dueDate, setDueDate] = useState(new Date());
+    const [ dueDate, setDueDate] = useState(new Date());
+    const {user} = useContext(AuthContext);
+
 
 
     const handleCreateAssignment = event => {
@@ -17,12 +23,32 @@ const AssignmentCreate = () => {
         const title = form.title.value;
         const difficultyLevel = form.difficultyLevel.value;
         const thumbnail = form.thumbnail.value;
-        const marks = form.marks.value;
+        const marks = parseInt(form.marks.value);
         const description = form.description.value;
 
-        const newAssignment = { title, difficultyLevel, dueDate, thumbnail, marks, description }
+        const email = user.email;
+
+        const newAssignment = { email, title, difficultyLevel, dueDate, thumbnail, marks, description }
 
         console.log('New assignment: ', newAssignment);
+
+        axios.post('http://localhost:5000/assignments', newAssignment)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: 'Assignment created successfully!',
+                        text: 'Click OK to continue',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                    form.reset();
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
     }
 
     return (
