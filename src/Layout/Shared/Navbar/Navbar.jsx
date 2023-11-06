@@ -9,7 +9,12 @@ const Navbar = () => {
 
     const navLinks = <>
         <li> <NavLink to="/">Home</NavLink></li>
+
+        <li> <NavLink to="/all-assignments">All Assignment</NavLink></li>
+
+
         <li> <NavLink to="/assignment-create">Assignment Create</NavLink></li>
+
         {
             !user &&
             <>

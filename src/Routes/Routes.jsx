@@ -6,6 +6,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AssignmentCreate from "../pages/AssignmentCreate/AssignmentCreate";
+import AllAssignment from "../pages/AllAssignment/AllAssignment";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
                 path: "/assignment-create",
                 element: <AssignmentCreate></AssignmentCreate>
             },
+            {
+                path: "/all-assignments",
+                element: <AllAssignment></AllAssignment>,
+            },
+            
         ]
     },
 ]);
