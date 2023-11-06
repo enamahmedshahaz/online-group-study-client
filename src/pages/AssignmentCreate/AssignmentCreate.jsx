@@ -1,4 +1,3 @@
-//import Swal from 'sweetalert2';
 import axios from "axios";
 import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";

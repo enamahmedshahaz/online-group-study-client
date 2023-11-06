@@ -21,7 +21,7 @@ const AssignmentCard = ({ assignment }) => {
                         <Link to={`/view-assignment/${_id}`}>
                             <button className="btn btn-primary normal-case">View</button>
                         </Link>
-                        <Link to={`/update-assignment/${_id}`}>
+                        <Link to={`/assignment-update/${_id}`}>
                             <button className="btn btn-secondary normal-case">Update</button>
                         </Link>
                     </div>
