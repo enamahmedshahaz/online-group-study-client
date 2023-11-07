@@ -7,7 +7,9 @@ const Main = () => {
     return (
         <div className="font-inter">
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <div className='max-w-[1200px] mx-auto'>
+                <Outlet></Outlet>
+            </div>
             <Footer></Footer>
         </div>
     );

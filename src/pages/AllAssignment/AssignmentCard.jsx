@@ -9,7 +9,7 @@ const AssignmentCard = ({ assignment }) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const loggedInEmail = user.email;
+    const loggedInEmail = user?.email;
 
     const { _id, email, title, difficultyLevel, dueDate, thumbnail, marks } = assignment;
 
