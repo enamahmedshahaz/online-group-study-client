@@ -1,12 +1,49 @@
 import { useLoaderData } from "react-router-dom";
-import moment from 'moment';
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import axios from "axios";
+import Swal from 'sweetalert2';
 
 
 const AssignmentDetails = () => {
 
     const loadedAssignment = useLoaderData();
-
     const { _id, title, difficultyLevel, dueDate, thumbnail, marks, description } = loadedAssignment;
+    
+    const {user} = useContext(AuthContext);
+
+
+    const handleSubmitAssignment = (event) =>{
+        event.preventDefault();
+
+        const form = event.target;
+
+        const pdfLink = form.pdfLink.value;
+        const note = form.note.value;
+
+        const loggedInEmail = user?.email;
+
+        const submission = { assignment_id: _id, pdfLink, note, status: "pending", submitted_by: loggedInEmail}
+
+        console.log('New assignment submission: ', submission);
+
+        axios.post('http://localhost:5000/submissions', submission)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: 'Assignment Submitted successfully!',
+                        text: 'Click OK to continue',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                    form.reset();
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 
     return (
         <div className="space-y-5 mt-5 mb-5">
@@ -37,10 +74,8 @@ const AssignmentDetails = () => {
                     <h3 className="font-bold text-xl text-center">Assignment Submission Form</h3>
                     <p className="text-sm text-center mb-5">(click ✕  to close)</p>
 
-                    <form  className="w-full px-5">
-                    
-                    {/* onSubmit={handleSubmitAssignment} */}
-
+                    <form onSubmit={handleSubmitAssignment}  className="w-full px-5">
+                         
                     <div className="flex flex-col gap-5">
 
                         {/* Field for assignment PDF link */}
@@ -68,7 +103,6 @@ const AssignmentDetails = () => {
 
                 </div>
             </dialog>
-
 
         </div>
     );
