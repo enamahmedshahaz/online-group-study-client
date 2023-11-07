@@ -3,7 +3,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import SubmittedAssignmentRow from "./submittedAssignmentRow";
 
 const SubmittedAssignments = () => {
-	
+
     const { user } = useContext(AuthContext);
 
     const [submittedAssignments, setSubmittedAssignments] = useState([]);
@@ -34,27 +34,37 @@ const SubmittedAssignments = () => {
     //     }
     // }
 
-    // const handleBookingConfirm = id => {
-    //     fetch(`http://localhost:5000/bookings/${id}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ status: 'confirm' })
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             if (data.modifiedCount > 0) {
-    //                 // update state
-    //                 const remaining = bookings.filter(booking => booking._id !== id);
-    //                 const updated = bookings.find(booking => booking._id === id);
-    //                 updated.status = 'confirm'
-    //                 const newBookings = [updated, ...remaining];
-    //                 setBookings(newBookings);
-    //             }
-    //         })
-    // }
+    const handleGiveMark = (event, id) => {
+
+        event.preventDefault();
+
+        const form = event.target;
+        const givenMark = parseInt(form.givenMark.value);
+        const feedback = form.feedback.value;
+
+        console.log(givenMark, feedback, id);
+
+        fetch(`http://localhost:5000/submissions/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ givenMark, feedback, status: 'completed' })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    // update state
+                    const remaining = submittedAssignments.filter(submittedAssignment => submittedAssignment._id !== id);
+                    const updated = submittedAssignments.find(submittedAssignment => submittedAssignment._id === id);
+                   // updated.status = 'confirm'
+                    const newSubmittedAssignments = [updated, ...remaining];
+                    
+                    setSubmittedAssignments(newSubmittedAssignments);
+                }
+            })
+    }
 
     return (
         <div>
@@ -76,12 +86,13 @@ const SubmittedAssignments = () => {
 
                     <tbody>
                         {
-                            submittedAssignments.map( (submittedAssignment,index) => <SubmittedAssignmentRow
+                            submittedAssignments.map((submittedAssignment, index) => <SubmittedAssignmentRow
                                 key={submittedAssignment._id}
                                 submittedAssignment={submittedAssignment}
                                 index={index}
-                                // handleDelete={handleDelete}
-                                // handleBookingConfirm={handleBookingConfirm}
+                                handleGiveMark={handleGiveMark}
+                            // handleDelete={handleDelete}
+                            // handleBookingConfirm={handleBookingConfirm}
                             ></SubmittedAssignmentRow>)
                         }
                     </tbody>

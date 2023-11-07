@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const SubmittedAssignmentRow = ({ submittedAssignment, index }) => {
+const SubmittedAssignmentRow = ({ submittedAssignment, index, handleGiveMark }) => {
 
     const { _id, assignment_id, pdfLink, note, status, submitted_by } = submittedAssignment;
 
@@ -14,32 +14,25 @@ const SubmittedAssignmentRow = ({ submittedAssignment, index }) => {
 
     }, [assignment_id]);
 
-
     return (
-        <tr>
-            {/* <th>
-                 <button onClick={() => handleDelete(_id)} className="btn btn-sm btn-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                </button> 
-            </th> */}
+        <>
+            <tr>
+                <td>
+                    {index + 1}
+                </td>
+                <td>
+                    {assignmentInfo?.title}
+                </td>
+                <td> {assignmentInfo?.marks}</td>
 
-            <td>
-                {index + 1}
-            </td>
-
-            <td>
-                {assignmentInfo?.title}
-            </td>
-
-            <td> {assignmentInfo?.marks}</td>
-
-            <td>{submitted_by}</td>
-
-            <td>
-                <button className="btn btn-sm btn-primary normal-case" onClick={() => document.getElementById(`submission_modal_${_id}`).showModal()}>Give Mark</button>
-            </td>
+                <td>{submitted_by}</td>
+                <td>
+                    <button className="btn btn-sm btn-primary normal-case" onClick={() => document.getElementById(`submission_modal_${_id}`).showModal()}>Give Mark</button>
+                </td>
+            </tr>
 
             <dialog id={"submission_modal_" + _id} className="modal">
+
                 <div className="modal-box">
                     <form method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -54,8 +47,8 @@ const SubmittedAssignmentRow = ({ submittedAssignment, index }) => {
                     </div>
                     <hr />
 
-                    <form className="w-full px-5">
-                        {/* onSubmit={handleGiveMark} */}
+                    <form onSubmit={() => handleGiveMark(event, _id)} className="w-full px-5">
+
                         <div className="flex flex-col gap-5">
 
                             {/* Field for Give Mark */}
@@ -77,22 +70,15 @@ const SubmittedAssignmentRow = ({ submittedAssignment, index }) => {
                         </div>
 
                         <div className="form-control mt-6">
-                            <button className="text-white text-base btn btn-primary normal-case">Confirm Mark</button>
+                            <button type="submit" className="text-white text-base btn btn-primary normal-case">Confirm Mark</button>
                         </div>
                     </form>
 
                 </div>
             </dialog>
 
+        </>
 
-            {/* <th>
-                 {
-                    status === 'confirm' ? <span className="font-bold text-primary">Confirmed</span> :
-                        <button onClick={() => handleBookingConfirm(_id)} className="btn btn-ghost btn-xs">Please Confirm</button>
-                } 
-                
-            </th> */}
-        </tr>
     );
 };
 
