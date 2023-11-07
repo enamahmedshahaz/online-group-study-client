@@ -15,6 +15,8 @@ const Navbar = () => {
 
         <li> <NavLink to="/assignment-create">Assignment Create</NavLink></li>
 
+        <li> <NavLink to="/view-submissions">View Submissions</NavLink></li>
+        
         {
             !user &&
             <>
