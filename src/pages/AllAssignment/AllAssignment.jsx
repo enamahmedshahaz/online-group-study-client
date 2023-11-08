@@ -19,8 +19,25 @@ const AllAssignment = () => {
     const handleChangeLevel = (e) => {
         const filterValue = e.target.value;
         console.log(filterValue);
-         setLevel(filterValue);
+        setLevel(filterValue);
     }
+
+    //----------pagination related code-------/
+
+    const assignmentCount = assignments.length;
+
+    const itemsPerPage = 8;
+
+    //const [itemsPerPage, setItemsPerPage] = useState(10);
+
+    const numberOfPages = Math.ceil(assignmentCount / itemsPerPage);
+
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const pages = [...Array(numberOfPages).keys()];
+
+
+    //----------END of pagination related code-------/
 
     return (
         <div>
@@ -57,6 +74,26 @@ const AllAssignment = () => {
                     > </AssignmentCard>)
                 }
             </div>
+
+            {/* pagination */}
+            <div className="text-center">
+                <div className="join my-5 ">
+
+
+                    {
+
+                        //    pages.map(page => <button className={currentPage === page ? 'selected' : undefined} onClick={() => setCurrentPage(page)} key={page}>{page}</button>)
+                        pages.map(page => <button className="join-item btn" onClick={() => setCurrentPage(page)} key={page}>{page}</button>)
+
+                    }
+
+                    <button className="join-item btn">1</button>
+                    <button className="join-item btn btn-active">2</button>
+                    <button className="join-item btn">3</button>
+                    <button className="join-item btn">4</button>
+                </div>
+            </div>
+
 
 
         </div>
