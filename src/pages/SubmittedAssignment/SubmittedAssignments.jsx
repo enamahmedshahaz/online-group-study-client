@@ -58,7 +58,7 @@ const SubmittedAssignments = () => {
                     // update state
                     const remaining = submittedAssignments.filter(submittedAssignment => submittedAssignment._id !== id);
                     const updated = submittedAssignments.find(submittedAssignment => submittedAssignment._id === id);
-                   // updated.status = 'confirm'
+                    updated.status = 'completed'
                     const newSubmittedAssignments = [updated, ...remaining];
                     
                     setSubmittedAssignments(newSubmittedAssignments);

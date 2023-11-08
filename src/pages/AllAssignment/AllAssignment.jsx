@@ -22,10 +22,14 @@ const AllAssignment = () => {
             </div>
 
             <div className="flex gap-3 flex-wrap justify-center items-center">
-            {
-                assignments.map(assignment => <AssignmentCard
-                    key={assignment._id} assignment={assignment}> </AssignmentCard>)
-            }
+                {
+                    assignments.map(assignment => <AssignmentCard
+                        key={assignment._id}
+                        assignment={assignment}
+                        assignments={assignments}
+                        setAssignments={setAssignments}
+                    > </AssignmentCard>)
+                }
             </div>
 
 
