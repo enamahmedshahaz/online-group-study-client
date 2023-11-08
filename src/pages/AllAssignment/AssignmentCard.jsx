@@ -84,7 +84,7 @@ const AssignmentCard = ({ assignment, assignments , setAssignments }) => {
             <div className="card-body items-center text-center flex">
                 <h2 className="card-title">{title}</h2>
                 <p>{marks} Marks </p>
-                <p>Level {difficultyLevel}</p>
+                <p>Level: {difficultyLevel}</p>
 
                 <div className="card-actions">
                     <div className='flex flex-col md:flex-row gap-2 justify-center'>
