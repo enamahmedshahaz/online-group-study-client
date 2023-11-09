@@ -34,7 +34,7 @@ const AssignmentUpdate = () => {
 
         //console.log('Updating assignment: ', UpdatingAssignment);
 
-        axios.put(`http://localhost:5000/assignments/${_id}`, UpdatingAssignment)
+        axios.put(`https://b8a11-online-group-study-server.vercel.app/assignments/${_id}`, UpdatingAssignment)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {

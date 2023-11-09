@@ -8,7 +8,7 @@ const MyAssignments = () => {
 
     const [mySubmittedAssignments, setMySubmittedAssignments] = useState([]);
 
-    const url = `http://localhost:5000/my-submissions?email=${user?.email}`;
+    const url = `https://b8a11-online-group-study-server.vercel.app/my-submissions?email=${user?.email}`;
 
     useEffect(() => {
         fetch(url)
@@ -26,7 +26,7 @@ const MyAssignments = () => {
 
     //     console.log(givenMark, feedback, id);
 
-    //     fetch(`http://localhost:5000/submissions/${id}`, {
+    //     fetch(`https://b8a11-online-group-study-server.vercel.app/submissions/${id}`, {
     //         method: 'PATCH',
     //         headers: {
     //             'content-type': 'application/json'

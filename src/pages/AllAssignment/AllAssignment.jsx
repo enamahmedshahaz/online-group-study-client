@@ -26,7 +26,7 @@ const AllAssignment = () => {
 
     //count assignments based on level
     useEffect(() => {
-        const url = `http://localhost:5000/assignmentCount?level=${level}`;
+        const url = `https://b8a11-online-group-study-server.vercel.app/assignmentCount?level=${level}`;
         axios
             .get(url)
             .then(res => {
@@ -38,7 +38,7 @@ const AllAssignment = () => {
 
     //load assignments based on query params level, currentPage, size 
     useEffect(() => {
-        const url = `http://localhost:5000/assignments?level=${level}&page=${currentPage}&size=${itemsPerPage}`;
+        const url = `https://b8a11-online-group-study-server.vercel.app/assignments?level=${level}&page=${currentPage}&size=${itemsPerPage}`;
         console.log(url);
         axios
             .get(url)

@@ -9,7 +9,7 @@ const MyAssignmentRow = ({ mySubmittedAssignment, index }) => {
     const [assignmentInfo, setAssignmentInfo] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/assignments/${assignment_id}`)
+        axios.get(`https://b8a11-online-group-study-server.vercel.app/assignments/${assignment_id}`)
             .then(res => setAssignmentInfo(res.data))
             .catch(err => console.log(err));
 

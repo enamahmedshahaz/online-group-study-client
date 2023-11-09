@@ -27,7 +27,7 @@ const AssignmentDetails = () => {
 
         console.log('New assignment submission: ', submission);
 
-        axios.post('http://localhost:5000/submissions', submission)
+        axios.post('https://b8a11-online-group-study-server.vercel.app/submissions', submission)
             .then(res => {
                 console.log(res.data);
                 if (res.data.insertedId) {
