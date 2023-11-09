@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 
 const SubmittedAssignmentRow = ({ submittedAssignment, index, handleGiveMark }) => {
 
-    const { _id, assignment_id, pdfLink, note, status, submitted_by } = submittedAssignment;
+    const { _id, assignment_id, pdfLink, note, submitted_by } = submittedAssignment;
 
     const [assignmentInfo, setAssignmentInfo] = useState([]);
 
@@ -73,13 +74,18 @@ const SubmittedAssignmentRow = ({ submittedAssignment, index, handleGiveMark }) 
                             <button type="submit" className="text-white text-base btn btn-primary normal-case">Confirm Mark</button>
                         </div>
                     </form>
-
+                    
                 </div>
             </dialog>
 
         </>
-
     );
 };
 
 export default SubmittedAssignmentRow;
+
+SubmittedAssignmentRow.propTypes = {
+    submittedAssignment: PropTypes.object,
+    index: PropTypes.number,
+    handleGiveMark:PropTypes.func
+}
