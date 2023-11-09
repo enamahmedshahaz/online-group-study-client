@@ -4,10 +4,9 @@ import img2 from '../../assets/images/banner/banner2.jpg';
 import img3 from '../../assets/images/banner/banner3.jpg';
 import img4 from '../../assets/images/banner/banner4.jpg';
 
-
 const Banner = () => {
     return (
-        <div className="carousel w-full h-[600px]">
+        <div className="carousel w-full h-[600px] mt-5 mb-5">
             <div id="slide1" className="carousel-item relative w-full">
                 <img src={img1} className="w-full rounded-xl" />
                 <div className="absolute rounded-xl flex items-center h-full left-0 top-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)]">
@@ -47,7 +46,7 @@ const Banner = () => {
                         <h2 className='text-6xl font-bold'>Collaborative Learning Made Easy</h2>
                         <p>Experience the power of group study. Take assignments, provide feedback, and learn together in a supportive online environment.</p>
                         <div>
-                        <Link to="/all-assignments" ><button className="btn btn-primary mr-5">Discover Assignments </button></Link>
+                            <Link to="/all-assignments" ><button className="btn btn-primary mr-5">Discover Assignments </button></Link>
                         </div>
                     </div>
                 </div>
@@ -63,7 +62,7 @@ const Banner = () => {
                         <h2 className='text-6xl font-bold'>Track Progress and Achievements</h2>
                         <p>Stay organized and motivated with our achievement tracking system. Mark submitted assignments, monitor your progress, and reach your educational goals.</p>
                         <div>
-                        <Link to="/all-assignments" ><button className="btn btn-primary mr-5">Discover Assignments </button></Link>
+                            <Link to="/all-assignments" ><button className="btn btn-primary mr-5">Discover Assignments </button></Link>
                         </div>
                     </div>
                 </div>
