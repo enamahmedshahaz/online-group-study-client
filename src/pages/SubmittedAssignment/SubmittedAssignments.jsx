@@ -16,24 +16,6 @@ const SubmittedAssignments = () => {
             .then(data => setSubmittedAssignments(data))
     }, [url]);
 
-    // const handleDelete = id => {
-    //     const proceed = confirm('Are You sure you want to delete');
-    //     if (proceed) {
-    //         fetch(`http://localhost:5000/bookings/${id}`, {
-    //             method: 'DELETE'
-    //         })
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 console.log(data);
-    //                 if (data.deletedCount > 0) {
-    //                     alert('deleted successful');
-    //                     const remaining = bookings.filter(booking => booking._id !== id);
-    //                     setBookings(remaining);
-    //                 }
-    //             })
-    //     }
-    // }
-
     const handleGiveMark = (event, id) => {
 
         event.preventDefault();
@@ -42,7 +24,7 @@ const SubmittedAssignments = () => {
         const givenMark = parseInt(form.givenMark.value);
         const feedback = form.feedback.value;
 
-        console.log(givenMark, feedback, id);
+       // console.log(givenMark, feedback, id);
 
         fetch(`http://localhost:5000/submissions/${id}`, {
             method: 'PATCH',
@@ -60,7 +42,6 @@ const SubmittedAssignments = () => {
                     const updated = submittedAssignments.find(submittedAssignment => submittedAssignment._id === id);
                     updated.status = 'completed'
                     const newSubmittedAssignments = [updated, ...remaining];
-                    
                     setSubmittedAssignments(newSubmittedAssignments);
                 }
             })
@@ -68,10 +49,14 @@ const SubmittedAssignments = () => {
 
     return (
         <div>
-            <h2 className="text-5xl">Total submissions: {submittedAssignments.length}</h2>
+            
+            <div className="mb-5 mt-5 text-center ">
+                <h2 className="font-medium text-6xl text-gray-600"> Submitted Assignments ({submittedAssignments.length})</h2>
+            </div>
+            
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
-                    {/* head */}
+                    {/* Table header */}
                     <thead>
                         <tr className="text-lg font-bold text-amber-300">
                             <th>
@@ -91,8 +76,6 @@ const SubmittedAssignments = () => {
                                 submittedAssignment={submittedAssignment}
                                 index={index}
                                 handleGiveMark={handleGiveMark}
-                            // handleDelete={handleDelete}
-                            // handleBookingConfirm={handleBookingConfirm}
                             ></SubmittedAssignmentRow>)
                         }
                     </tbody>

@@ -16,7 +16,7 @@ const SubmittedAssignmentRow = ({ submittedAssignment, index, handleGiveMark }) 
 
     return (
         <>
-            <tr>
+            <tr className="text-lg text-gray-600">
                 <td>
                     {index + 1}
                 </td>
@@ -41,9 +41,9 @@ const SubmittedAssignmentRow = ({ submittedAssignment, index, handleGiveMark }) 
                     <p className="text-sm text-center mb-5">(click ✕  to close)</p>
 
                     <hr />
-                    <div className="space-y-4 py-5">
-                        <a href={pdfLink}>Assignment PDF Link: <span className="text-blue-600">{pdfLink}</span> </a>
-                        <p >{note}</p>
+                    <div className="space-y-4 py-5 bg-amber-200 p-5 rounded-lg">
+                        <a href={pdfLink}> <span className="font-bold">Assignment PDF Link:</span> <span className="text-blue-600">{pdfLink}</span> </a>
+                        <p> <span className="font-bold">Note About Assignment:</span> {note}</p>
                     </div>
                     <hr />
 

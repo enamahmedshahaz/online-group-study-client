@@ -10,12 +10,10 @@ const Navbar = () => {
     const navLinks = <>
         <li> <NavLink to="/">Home</NavLink></li>
 
-        <li> <NavLink to="/all-assignments">All Assignment</NavLink></li>
-
-
-        <li> <NavLink to="/assignment-create">Assignment Create</NavLink></li>
-
-        <li> <NavLink to="/view-submissions">View Submissions</NavLink></li>
+        <li> <NavLink to="/assignment-create">Create Assignment</NavLink></li>
+        <li> <NavLink to="/all-assignments">Assignments</NavLink></li>
+        <li> <NavLink to="/my-assignments">My Assignments</NavLink></li>
+        <li> <NavLink to="/view-submissions">Submitted Assignments</NavLink></li>
         
         {
             !user &&
